@@ -30,4 +30,5 @@ jobs:
             --accept 200..=299,403,429
             --exclude example\.com
             --exclude pay\.ya\.ru/o/
+            --exclude img\.shields\.io
             README.md 'docs/**/*.md' examples/README.md
