@@ -10,3 +10,5 @@ examples/curl/env.sh
 /response*.json
 /Screenshot*
 /IMG_*
+ROADMAP.md
+STYLEGUIDE.md
