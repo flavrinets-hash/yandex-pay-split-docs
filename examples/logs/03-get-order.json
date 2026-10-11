@@ -77,7 +77,7 @@
             "methodType": "SPLIT"
           },
           "paymentStatus": "REFUNDED",
-          "paymentUrl": "https://sandbox.pay.ya.ru/o/bdRWcP",
+          "paymentUrl": "<PAYMENT_URL>",
           "reason": null,
           "reasonCode": null,
           "shippingMethod": null,

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/<ORDER_ID>/refund",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "3d64f72d-7b40-4f1a-885f-dd5899cf2cfa",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "externalOperationId": "<EXTERNAL_OPERATION_ID>",
+      "refundAmount": "33000.00",
+      "targetCart": {
+        "items": [
+          {
+            "price": "30000",
+            "productId": "Item_1",
+            "quantityCount": "30000"
+          }
+        ]
+      },
+      "refundCart": {
+        "items": [
+          {
+            "productId": "Item_1",
+            "quantityCount": "1"
+          },
+          {
+            "productId": "Item_3",
+            "quantityCount": "1"
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "date": "Sun, 11 Oct 2026 20:05:26 GMT",
+    "body": {
+      "status": "fail",
+      "reasonCode": "REFUND_ONLY_ONE_CART_EXPECTATION_FAILED",
+      "reason": "Expected to receive only one of the parameters - \"targetCart\" or \"refundCart\", but both of them were given",
+      "details": {
+        "description": "Expected to receive only one of the parameters - \"targetCart\" or \"refundCart\", but both of them were given"
+      }
+    }
+  }
+}

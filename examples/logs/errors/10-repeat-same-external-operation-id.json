@@ -1,0 +1,112 @@
+{
+  "steps": [
+    {
+      "description": "Возврат 1 шт. Item_2, externalOperationId = part-a",
+      "request": {
+        "method": "POST",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/faa9ba6d-6db4-4739-8244-284b14da5095/refund",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "X-Request-Id": "bd9b8e91-78aa-4841-9a48-6dd144ce21dc",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "externalOperationId": "part-a",
+          "refundAmount": "1500.00",
+          "refundCart": {
+            "items": [
+              {
+                "productId": "Item_2",
+                "quantityCount": "1"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "date": "Sun, 11 Oct 2026 21:01:06 GMT",
+        "body": {
+          "code": 200,
+          "status": "success",
+          "data": {
+            "operation": {
+              "operationId": "4fc65975-5095-41f4-b962-d04d4b4c2f69",
+              "operationType": "REFUND",
+              "orderId": "faa9ba6d-6db4-4739-8244-284b14da5095",
+              "amount": "1500.00",
+              "pointsAmount": null,
+              "status": "PENDING",
+              "reason": null,
+              "params": {
+                "motive": null,
+                "branch_id": null,
+                "manager_id": null
+              },
+              "externalOperationId": "part-a",
+              "created": "2026-10-12T00:01:06.762513+03:00",
+              "updated": "2026-10-12T00:01:06.762513+03:00",
+              "paymentMethod": {
+                "methodType": "SPLIT"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Тот же запрос через 30 секунд, после завершения операции",
+      "request": {
+        "method": "POST",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/faa9ba6d-6db4-4739-8244-284b14da5095/refund",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "X-Request-Id": "1391bb78-aebd-4c75-8cad-1daadfe08859",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "externalOperationId": "part-a",
+          "refundAmount": "1500.00",
+          "refundCart": {
+            "items": [
+              {
+                "productId": "Item_2",
+                "quantityCount": "1"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "date": "Sun, 11 Oct 2026 21:01:37 GMT",
+        "body": {
+          "code": 200,
+          "status": "success",
+          "data": {
+            "operation": {
+              "operationId": "4fc65975-5095-41f4-b962-d04d4b4c2f69",
+              "operationType": "REFUND",
+              "orderId": "faa9ba6d-6db4-4739-8244-284b14da5095",
+              "amount": "1500.00",
+              "pointsAmount": null,
+              "status": "SUCCESS",
+              "reason": null,
+              "params": {
+                "motive": null,
+                "branch_id": null,
+                "manager_id": null
+              },
+              "externalOperationId": "part-a",
+              "created": "2026-10-12T00:01:06.762513+03:00",
+              "updated": "2026-10-12T00:01:08.631142+03:00",
+              "paymentMethod": {
+                "methodType": "SPLIT"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

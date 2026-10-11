@@ -1,0 +1,101 @@
+{
+  "note": "Ответы скопированы из Postman вручную, X-Request-Id не сохранены. Заказ на 29 000,00 ₽: Item_1 (3 000,00), Item_2 (4 × 1 500,00), Item_3 (20 000,00 со скидкой).",
+  "steps": [
+    {
+      "description": "Повтор уже проведённого возврата Item_1 и Item_3 с тем же externalOperationId",
+      "request": {
+        "method": "POST",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/faa9ba6d-6db4-4739-8244-284b14da5095/refund",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "externalOperationId": "tes",
+          "refundAmount": "23000.00",
+          "refundCart": {
+            "items": [
+              {
+                "productId": "Item_1",
+                "quantityCount": "1"
+              },
+              {
+                "productId": "Item_3",
+                "quantityCount": "1"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "status": "success",
+          "data": {
+            "operation": {
+              "operationId": "37af8f17-b9c8-493e-8039-96134ae49682",
+              "operationType": "REFUND",
+              "orderId": "faa9ba6d-6db4-4739-8244-284b14da5095",
+              "amount": "23000.00",
+              "pointsAmount": null,
+              "status": "SUCCESS",
+              "reason": null,
+              "params": {
+                "motive": null,
+                "branch_id": null,
+                "manager_id": null
+              },
+              "externalOperationId": "tes",
+              "created": "2026-10-11T23:53:58.071455+03:00",
+              "updated": "2026-10-11T23:54:02.315879+03:00",
+              "paymentMethod": {
+                "methodType": "SPLIT"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Тот же возврат с новым externalOperationId",
+      "request": {
+        "method": "POST",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/faa9ba6d-6db4-4739-8244-284b14da5095/refund",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "externalOperationId": "test",
+          "refundAmount": "23000.00",
+          "refundCart": {
+            "items": [
+              {
+                "productId": "Item_1",
+                "quantityCount": "1"
+              },
+              {
+                "productId": "Item_3",
+                "quantityCount": "1"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "status": "fail",
+          "reasonCode": "ORDERUPDATE_UNKNOWN_ITEM_PRODUCT_ID",
+          "reason": "Item at position `0` has unknown `productId` = \"Item_1\"`. This productId is not present in the original cart",
+          "details": {
+            "index": 0,
+            "product_id": "Item_1",
+            "description": "Item at position `0` has unknown `productId` = \"Item_1\"`. This productId is not present in the original cart"
+          }
+        }
+      }
+    }
+  ]
+}

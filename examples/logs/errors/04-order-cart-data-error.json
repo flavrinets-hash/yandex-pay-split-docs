@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "75fee0ff-953b-4f0c-a858-9d35402552a1",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "orderId": "<ORDER_ID>",
+      "currencyCode": "RUB",
+      "availablePaymentMethods": [
+        "CARD",
+        "SPLIT"
+      ],
+      "preferredPaymentMethod": "SPLIT",
+      "cart": {
+        "items": [
+          {
+            "productId": "Item_1",
+            "title": "Товар 1",
+            "total": "100.00",
+            "quantity": {
+              "count": "3"
+            }
+          }
+        ],
+        "total": {
+          "amount": "100.00"
+        }
+      },
+      "redirectUrls": {
+        "onSuccess": "https://example.com/success",
+        "onError": "https://example.com/error"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "date": "Sun, 11 Oct 2026 21:04:38 GMT",
+    "body": {
+      "status": "fail",
+      "reasonCode": "ORDER_CART_DATA_ERROR",
+      "reason": "Inferred item price is not valid amount of money, given item price = total / quantity.count = 100.00 / 3 = 33.33333333333333333333333333",
+      "details": {
+        "description": "Inferred item price is not valid amount of money, given item price = total / quantity.count = 100.00 / 3 = 33.33333333333333333333333333"
+      }
+    }
+  }
+}

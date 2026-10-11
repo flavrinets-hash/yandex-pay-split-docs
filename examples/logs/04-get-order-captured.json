@@ -82,7 +82,7 @@
             "methodType": "SPLIT"
           },
           "paymentStatus": "CAPTURED",
-          "paymentUrl": "https://sandbox.pay.ya.ru/o/avvpk0",
+          "paymentUrl": "<PAYMENT_URL>",
           "reason": null,
           "reasonCode": null,
           "shippingMethod": null,

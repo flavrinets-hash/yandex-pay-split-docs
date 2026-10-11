@@ -44,7 +44,7 @@
       "code": 200,
       "status": "success",
       "data": {
-        "paymentUrl": "https://sandbox.pay.ya.ru/o/bdRWcP"
+        "paymentUrl": "<PAYMENT_URL>"
       }
     }
   }

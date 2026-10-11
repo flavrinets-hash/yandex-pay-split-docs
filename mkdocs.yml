@@ -38,6 +38,7 @@ nav:
   - Справочник:
       - Статусы заказа и операций: reference/statuses.md
       - Коды ошибок: reference/error-codes.md
+      - Отличия Sandbox от документации: reference/sandbox-vs-docs.md
 
 markdown_extensions:
   - admonition

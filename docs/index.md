@@ -14,6 +14,7 @@
 | Вернуть один товар из заказа | [Частичный возврат](guides/partial-refund.md) |
 | Увидеть взаимодействие систем целиком | [Сценарий оплаты через Сплит](diagrams/payment-flow.md) |
 | Разобрать ошибку партнёра | [На форме доступен только Сплит](troubleshooting/split-only-payment-form.md), [Коды ошибок](reference/error-codes.md) |
+| Узнать, где API ведёт себя не так, как в документации | [Отличия Sandbox от документации](reference/sandbox-vs-docs.md) |
 
 ## Основные понятия
 

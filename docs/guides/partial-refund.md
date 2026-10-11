@@ -88,6 +88,38 @@ Content-Type: application/json
 
 `refundAmount` должен совпадать с суммой, которую API рассчитывает по корзине: 6 600.00 − (4 500.00 + 300.00) = 1 800.00. Если в расчёте взять цену без скидки (2 000 вместо 1 800), суммы не сойдутся, и API вернёт ошибку `REFUND_AMOUNT_EXPECTATION_FAILED`.
 
+## Повторный запрос возврата
+
+Если ответ на запрос возврата не пришёл (таймаут, ошибка `5xx`), повторите запрос с тем же `externalOperationId` и тем же телом. Яндекс Пэй вернёт уже созданную операцию с текущим статусом, второй возврат не создаётся ([лог](https://github.com/flavrinets-hash/yandex-pay-split-docs/blob/main/examples/logs/errors/10-repeat-same-external-operation-id.json)).
+
+!!! warning "Не создавайте новый externalOperationId при повторе"
+    Запрос с новым `externalOperationId` — это новый возврат. Если возвращается часть количества позиции, покупатель получит деньги дважды ([лог](https://github.com/flavrinets-hash/yandex-pay-split-docs/blob/main/examples/logs/errors/11-new-external-operation-id-second-refund.json)). Создавайте `externalOperationId` один раз на заявку на возврат и сохраняйте его до отправки запроса.
+
+По документации повтор после запуска возврата должен вернуть ошибку `DUPLICATE_EXTERNAL_OPERATION_ID`, но Sandbox отвечает `200`. Подробнее — в справочнике [Отличия Sandbox от документации](../reference/sandbox-vs-docs.md).
+
+## Проверка в Sandbox
+
+Сценарий выполнен в Sandbox 12 октября 2026 года, запросы и ответы — в [логе частичного возврата](https://github.com/flavrinets-hash/yandex-pay-split-docs/blob/main/examples/logs/05-partial-refund.json).
+
+Заказ на 29 300,00 ₽, оплачен Сплитом:
+
+| Позиция | Количество | Цена | Сумма |
+| --- | --- | --- | --- |
+| `Item_1` | 1 | 3 000,00 ₽ | 3 000,00 ₽ |
+| `Item_2` | 4 | 1 500,00 ₽ | 6 000,00 ₽ |
+| `Item_3` | 1 | 20 000,00 ₽ со скидкой (30 000,00 ₽ без скидки) | 20 000,00 ₽ |
+| `delivery` — доставка | 1 | 300,00 ₽ | 300,00 ₽ |
+
+Доставка передана отдельной позицией корзины, как требует [описание `POST /v1/orders`](https://pay.yandex.ru/docs/ru/custom/backend/yandex-pay-api/order/merchant_v1_orders-post). Поле `targetShipping` в запросе возврата не передавалось: оно работает только в Yandex Pay Checkout. У позиции доставки нет `unitPrice` и `discountedUnitPrice` — без них Яндекс Пэй считает цену как `total` / `quantity.count`.
+
+Возврат через `refundCart`: `Item_1`, `Item_3` и доставка, `refundAmount` = `23300.00` (3 000,00 + 20 000,00 + 300,00). Сумма `Item_3` взята по цене со скидкой.
+
+Результат:
+
+- операция `REFUND` на 23 300,00 ₽ перешла из `PENDING` в `SUCCESS` за 3 секунды;
+- заказ перешёл в статус `PARTIALLY_REFUNDED`, `orderAmount` = `6000.00`;
+- в корзине заказа осталась только позиция `Item_2`. Возвращённые позиции, включая доставку, из корзины удалены.
+
 ## Жизненный цикл статусов и логика обработки вебхуков
 
 **Цепочка смены статусов:**

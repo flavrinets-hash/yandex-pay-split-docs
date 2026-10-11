@@ -1,0 +1,256 @@
+{
+  "steps": [
+    {
+      "description": "Создание заказа: скидка на Item_3, доставка — отдельная позиция корзины",
+      "request": {
+        "method": "POST",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "X-Request-Id": "a93057dc-e308-4281-95f9-28a20871df04",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "orderId": "e93f04c2-8554-4e85-809a-56a98d692464",
+          "currencyCode": "RUB",
+          "availablePaymentMethods": [
+            "CARD",
+            "SPLIT"
+          ],
+          "preferredPaymentMethod": "SPLIT",
+          "cart": {
+            "items": [
+              {
+                "discountedUnitPrice": "3000.00",
+                "productId": "Item_1",
+                "title": "Товар 1",
+                "total": "3000",
+                "quantity": {
+                  "count": "1"
+                }
+              },
+              {
+                "discountedUnitPrice": "1500",
+                "productId": "Item_2",
+                "title": "Товар 2",
+                "total": "6000",
+                "quantity": {
+                  "count": "4"
+                }
+              },
+              {
+                "unitPrice": "30000.00",
+                "discountedUnitPrice": "20000.00",
+                "productId": "Item_3",
+                "title": "Тестовый товар",
+                "total": "20000.00",
+                "quantity": {
+                  "count": "1"
+                }
+              },
+              {
+                "productId": "delivery",
+                "title": "Доставка",
+                "total": "300.00",
+                "quantity": {
+                  "count": "1"
+                }
+              }
+            ],
+            "total": {
+              "amount": "29300.00"
+            }
+          },
+          "redirectUrls": {
+            "onSuccess": "https://example.com/success",
+            "onError": "https://example.com/error"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "status": "success",
+          "data": {
+            "paymentUrl": "<PAYMENT_URL>"
+          }
+        }
+      }
+    },
+    {
+      "description": "Частичный возврат через refundCart: Item_1, Item_3 и доставка",
+      "request": {
+        "method": "POST",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/e93f04c2-8554-4e85-809a-56a98d692464/refund",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "X-Request-Id": "bbea8b0f-4e73-43f6-9b82-3ab1f85b1f09",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "externalOperationId": "test",
+          "refundAmount": "23300.00",
+          "refundCart": {
+            "items": [
+              {
+                "productId": "Item_1",
+                "quantityCount": "1"
+              },
+              {
+                "productId": "Item_3",
+                "quantityCount": "1"
+              },
+              {
+                "productId": "delivery",
+                "quantityCount": "1"
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "status": "success",
+          "data": {
+            "operation": {
+              "operationId": "1723872a-348d-42b7-b261-18de4e296718",
+              "operationType": "REFUND",
+              "orderId": "e93f04c2-8554-4e85-809a-56a98d692464",
+              "amount": "23300.00",
+              "pointsAmount": null,
+              "status": "PENDING",
+              "reason": null,
+              "params": {
+                "motive": null,
+                "branch_id": null,
+                "manager_id": null
+              },
+              "externalOperationId": "test",
+              "created": "2026-10-12T00:31:18.487515+03:00",
+              "updated": "2026-10-12T00:31:18.487515+03:00",
+              "paymentMethod": {
+                "methodType": "SPLIT"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Статус заказа после возврата",
+      "request": {
+        "method": "GET",
+        "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders/e93f04c2-8554-4e85-809a-56a98d692464",
+        "headers": {
+          "Authorization": "Api-Key <MERCHANT_ID>",
+          "X-Request-Id": "f7d0001d-8fa1-4ede-a9f0-56a6f76a0afb"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "code": 200,
+          "status": "success",
+          "data": {
+            "delivery": null,
+            "operations": [
+              {
+                "amount": "23300.00",
+                "approvalCode": null,
+                "created": "2026-10-12T00:31:18.487515+03:00",
+                "externalOperationId": "test",
+                "operationId": "1723872a-348d-42b7-b261-18de4e296718",
+                "operationType": "REFUND",
+                "orderId": "e93f04c2-8554-4e85-809a-56a98d692464",
+                "params": {
+                  "branch_id": null,
+                  "manager_id": null,
+                  "motive": null
+                },
+                "reason": null,
+                "status": "SUCCESS",
+                "updated": "2026-10-12T00:31:21.200744+03:00"
+              },
+              {
+                "amount": "29300.00",
+                "approvalCode": null,
+                "created": "2026-10-12T00:30:59.614064+03:00",
+                "externalOperationId": null,
+                "operationId": "6c25c87f-74e5-4031-b728-0cb2be5b0478",
+                "operationType": "AUTHORIZE",
+                "orderId": "e93f04c2-8554-4e85-809a-56a98d692464",
+                "params": {},
+                "reason": null,
+                "status": "SUCCESS",
+                "updated": "2026-10-12T00:31:03.442671+03:00"
+              }
+            ],
+            "order": {
+              "cart": {
+                "cartId": "55c3ec924498ee524767f6d1f44d10fcb2cf2d707e259b109e14f49317dd6086",
+                "coupons": null,
+                "discounts": null,
+                "externalId": null,
+                "items": [
+                  {
+                    "description": null,
+                    "discountedUnitPrice": "1500",
+                    "features": null,
+                    "finalPrice": "1500",
+                    "measurements": null,
+                    "pointsAmount": null,
+                    "productId": "Item_2",
+                    "quantity": {
+                      "available": null,
+                      "count": "4",
+                      "label": null
+                    },
+                    "receipt": null,
+                    "skuId": null,
+                    "subtotal": null,
+                    "title": "Товар 2",
+                    "total": "6000",
+                    "type": "UNSPECIFIED",
+                    "unitPrice": null
+                  }
+                ],
+                "measurements": null,
+                "total": {
+                  "amount": "6000",
+                  "externalAmount": null,
+                  "label": null,
+                  "pointsAmount": null
+                }
+              },
+              "contractType": 1,
+              "coolingPeriodExpiresAt": null,
+              "created": "2026-10-12T00:28:37.632268+03:00",
+              "currencyCode": "RUB",
+              "fiscalContact": null,
+              "isPrepayment": false,
+              "merchantId": "<MERCHANT_ID>",
+              "metadata": null,
+              "orderAmount": "6000.00",
+              "orderId": "e93f04c2-8554-4e85-809a-56a98d692464",
+              "paymentMethod": {
+                "cardLast4": "7992",
+                "cardNetwork": "MIR",
+                "methodType": "SPLIT"
+              },
+              "paymentStatus": "PARTIALLY_REFUNDED",
+              "paymentUrl": "<PAYMENT_URL>",
+              "reason": null,
+              "reasonCode": null,
+              "shippingMethod": null,
+              "splitCode": null,
+              "updated": "2026-10-12T00:31:21.200744+03:00"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

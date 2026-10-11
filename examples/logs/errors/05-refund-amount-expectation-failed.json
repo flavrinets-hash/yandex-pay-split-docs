@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/<ORDER_ID>/refund",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "9c1d1c8b-ac0e-4b14-bd29-ee84f3d3f565",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "externalOperationId": "<EXTERNAL_OPERATION_ID>",
+      "refundAmount": "33000.00",
+      "refundCart": {
+        "items": [
+          {
+            "productId": "Item_1",
+            "quantityCount": "1"
+          },
+          {
+            "productId": "Item_3",
+            "quantityCount": "1"
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "date": "Sun, 11 Oct 2026 20:16:38 GMT",
+    "body": {
+      "status": "fail",
+      "reasonCode": "REFUND_AMOUNT_EXPECTATION_FAILED",
+      "reason": "Requested refund amount = 33000.00, but after applying provided `targetCart` and `targetShipping` resulting order amount was 6000,resulting in refund = 23000.00",
+      "details": {
+        "order_amount_before_refund": "29000.00",
+        "requested_refund_amount": "33000.00",
+        "order_amount_after_refund": "6000",
+        "actual_refund_amount": "23000.00",
+        "description": "Requested refund amount = 33000.00, but after applying provided `targetCart` and `targetShipping` resulting order amount was 6000,resulting in refund = 23000.00"
+      }
+    }
+  }
+}

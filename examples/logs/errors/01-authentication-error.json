@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders",
+    "headers": {
+      "Authorization": "Api-Key<MERCHANT_ID>",
+      "X-Request-Id": "3a3d006e-2254-41a8-9d1f-f9e4e772a95c",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "orderId": "<ORDER_ID>",
+      "currencyCode": "RUB",
+      "availablePaymentMethods": [
+        "CARD",
+        "SPLIT"
+      ],
+      "preferredPaymentMethod": "SPLIT",
+      "cart": {
+        "items": [
+          {
+            "discountedUnitPrice": "3000.00",
+            "productId": "Item_1",
+            "title": "Товар 1",
+            "total": "3000",
+            "quantity": {
+              "count": "1"
+            }
+          },
+          {
+            "discountedUnitPrice": "1500",
+            "productId": "Item_2",
+            "title": "Товар 2",
+            "total": "6000",
+            "quantity": {
+              "count": "4"
+            }
+          },
+          {
+            "unitPrice": "30000.00",
+            "discountedUnitPrice": "20000.00",
+            "productId": "Item_3",
+            "title": "Тестовый товар",
+            "total": "20000.00",
+            "quantity": {
+              "count": "1"
+            }
+          }
+        ],
+        "total": {
+          "amount": "29000.00"
+        }
+      },
+      "redirectUrls": {
+        "onSuccess": "https://example.com/success",
+        "onError": "https://example.com/error"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "date": "Sun, 11 Oct 2026 20:18:43 GMT",
+    "body": {
+      "status": "fail",
+      "reasonCode": "AUTHENTICATION_ERROR",
+      "reason": "Authorization header is malformed"
+    }
+  }
+}

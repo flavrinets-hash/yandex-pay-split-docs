@@ -1,0 +1,66 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/b9fafa21-1be5-4b3d-96ba-bd2be4fb34c0/refund",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "cae3679e-10c2-43db-8e75-5939dc694d1d",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "externalOperationId": "asaspp-assadf-fkafk-sasfasf",
+      "refundAmount": "33000.00",
+      "targerCart": {
+        "items": [
+          {
+            "price": "30000",
+            "productId": "Item_1",
+            "quantityCount": "30000"
+          }
+        ]
+      },
+      "refundCart": {
+        "items": [
+          {
+            "productId": "Item_1",
+            "quantityCount": "1"
+          },
+          {
+            "productId": "Item_3",
+            "quantityCount": "1"
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "date": "Sun, 11 Oct 2026 19:57:01 GMT",
+    "body": {
+      "code": 200,
+      "status": "success",
+      "data": {
+        "operation": {
+          "operationId": "36b40dda-c2bd-4534-a83c-a509b3928a17",
+          "operationType": "REFUND",
+          "orderId": "b9fafa21-1be5-4b3d-96ba-bd2be4fb34c0",
+          "amount": "33000.00",
+          "pointsAmount": null,
+          "status": "PENDING",
+          "reason": null,
+          "params": {
+            "motive": null,
+            "branch_id": null,
+            "manager_id": null
+          },
+          "externalOperationId": "asaspp-assadf-fkafk-sasfasf",
+          "created": "2026-10-11T22:57:01.148844+03:00",
+          "updated": "2026-10-11T22:57:01.148844+03:00",
+          "paymentMethod": {
+            "methodType": "SPLIT"
+          }
+        }
+      }
+    }
+  }
+}

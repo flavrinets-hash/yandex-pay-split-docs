@@ -1,0 +1,32 @@
+{
+  "note": "Ответ скопирован из Postman вручную. Тело запроса и X-Request-Id не сохранены. Запрос: возврат с новым externalOperationId по заказу в статусе REFUNDED, 11 октября 2026 года.",
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/<ORDER_ID>/refund",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "81389459-5cb6-47d6-8b2b-35917aca38d3",
+      "Content-Type": "application/json"
+    },
+    "body":{
+  "externalOperationId": "{{$guid}}",
+  "refundAmount": "29300.00"
+  }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "status": "fail",
+      "reasonCode": "INVALID_PAYMENT_STATUS",
+      "reason": "Order is expected to have status \"PARTIALLY_REFUNDED\" or \"CAPTURED\" or \"AUTHORIZED\", but the actual status is \"REFUNDED\"",
+      "details": {
+        "expected": [
+          "PARTIALLY_REFUNDED",
+          "CAPTURED",
+          "AUTHORIZED"
+        ],
+        "actual": "REFUNDED"
+      }
+    }
+  }
+}
