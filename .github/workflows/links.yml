@@ -1,0 +1,27 @@
+name: Links
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose --no-progress
+            --accept 200..=299,403,429
+            --exclude example\.com
+            --exclude pay\.ya\.ru/o/
+            --exclude img\.shields\.io
+            --remap 'https://github.com/flavrinets-hash/yandex-pay-split-docs/(blob|tree)/main/ file://${{ github.workspace }}/'
+            --max-retries 5 --retry-wait-time 5
+            README.md 'docs/**/*.md' examples/README.md

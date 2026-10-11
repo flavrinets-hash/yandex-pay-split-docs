@@ -22,13 +22,3 @@ jobs:
           for f in examples/logs/*.json; do
             python3 -m json.tool "$f" > /dev/null || { echo "Invalid JSON: $f"; exit 1; }
           done
-      - name: Link checker
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >-
-            --verbose --no-progress
-            --accept 200..=299,403,429
-            --exclude example\.com
-            --exclude pay\.ya\.ru/o/
-            --exclude img\.shields\.io
-            README.md 'docs/**/*.md' examples/README.md
