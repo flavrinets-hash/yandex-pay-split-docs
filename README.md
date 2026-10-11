@@ -1,6 +1,8 @@
 # Яндекс Пэй и Сплит: документация для партнёра-разработчика
 
-[![Docs](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/docs.yml/badge.svg)](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/docs.yml)
+[![Deploy Docs](https://img.shields.io/github/actions/workflow/status/flavrinets-hash/yandex-pay-split-docs/docs.yml?branch=main&style=flat-square&logo=github&label=Deploy%20Docs)](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/docs.yml)
+[![Markdown Lint](https://img.shields.io/badge/Markdown-lint-informational?style=flat-square&logo=markdown)](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/docs.yml)
+[![MkDocs Material](https://img.shields.io/badge/MkDocs-Material-526CFE?style=flat-square&logo=materialformkdocs&logoColor=white)](https://flavrinets-hash.github.io/yandex-pay-split-docs/)
 
 **Сайт документации:** <https://flavrinets-hash.github.io/yandex-pay-split-docs/>
 
@@ -16,7 +18,7 @@
 | [Подключение оплаты картой](docs/integration/card-only.md) | Пошаговая схема интеграции | Порядок вызовов API, Web SDK, вебхуки, возвраты |
 | [Сквозное тестирование в Sandbox](docs/guides/sandbox-e2e.md) | User Guide для разработчиков | Postman, заголовки, создание заказа, оплата, возврат, логи |
 | [Частичный возврат](docs/guides/partial-refund.md) | Руководство + разбор механики | `targetCart` и `refundCart`, расчёт суммы со скидкой, обработка вебхуков |
-| [Разбор обращения: ошибка в запросе](docs/support/request-review.md) | Кейс поддержки (L2) | Диагностика запроса партнёра, причина, исправление |
+| [На платёжной форме доступен только Сплит](docs/troubleshooting/split-only-payment-form.md) | Troubleshooting, база знаний | Симптом, причина, чек-лист проверки запроса, решение |
 | [Сценарий оплаты через Сплит](docs/diagrams/payment-flow.md) | Sequence-диаграмма (Mermaid) | Платёжная сессия, редирект, вебхук, резервный опрос статуса |
 | [Статусы заказа и операций](docs/reference/statuses.md) | Справочник | Жизненный цикл заказа и операций |
 | [Коды ошибок](docs/reference/error-codes.md) | Справочник для поддержки | Код ошибки → причина → что проверить |
@@ -27,11 +29,13 @@
 - **Docs-as-Code:** Markdown, MkDocs Material, Git.
 - **CI:** GitHub Actions — markdownlint, проверка JSON-примеров, сборка `mkdocs build --strict`, деплой на GitHub Pages.
 - **API:** Postman, curl, REST, JSON, вебхуки с подписью JWT (ES256).
-- **Схемы:** Mermaid (рендерится прямо на GitHub).
+- **Схемы:** Mermaid.
 
 ## Как проверялась документация
 
-Каждое утверждение о поведении API сверено с публичной документацией Яндекс Пэй. Сценарий «создание заказа → оплата Сплитом → полный возврат» выполнен в Sandbox, логи запросов и ответов лежат в [`examples/logs`](examples/logs).
+Описание методов, параметров и статусов API сверено с публичной документацией Яндекс Пэй. Сценарий «создание заказа → оплата Сплитом → возврат → проверка статуса» выполнен в Sandbox, логи запросов и ответов лежат в [`examples/logs`](examples/logs).
+
+Работа вебхуков (формат, проверка подписи JWT, повторы) описана по документации Яндекс Пэй и в Sandbox не проверялась: собственный Callback URL не настраивался.
 
 ## Локальная сборка
 
@@ -41,7 +45,6 @@ pip install -r requirements.txt
 mkdocs serve
 ```
 
-## Автор
+## Другие проекты
 
-Фёдор Лавринец — технический писатель (API, Docs-as-Code) / инженер технической поддержки (L2).
-GitHub: [flavrinets-hash](https://github.com/flavrinets-hash) · Другой проект: [Telegram Bot API — OpenAPI-документация](https://github.com/flavrinets-hash/Telegram_OpenAPI)
+[Telegram Bot API — OpenAPI-документация](https://github.com/flavrinets-hash/Telegram_OpenAPI)

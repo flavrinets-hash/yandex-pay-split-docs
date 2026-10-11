@@ -30,7 +30,7 @@
 | `REFUND_LEAVES_LESS_THAN_MINIMAL_AMOUNT` | После возврата в заказе останется меньше 1 рубля | Сделать полный возврат вместо частичного |
 | `ORDER_CART_EMPTY` | Не передана корзина там, где она нужна | Добавить `targetCart` или `refundCart` |
 | `ORDER_AMOUNT_MISMATCH` | Сумма заказа не сходится с суммой корзины и доставки | Пересчитать суммы позиций и доставки |
-| `ORDERUPDATE_UNKNOWN_ITEM_PRODUCT_ID` | `productId` нет в исходной корзине | Идентификаторы позиций — те же, что при создании заказа |
+| `ORDERUPDATE_UNKNOWN_ITEM_PRODUCT_ID` | `productId` нет в исходной корзине | Идентификаторы позиций. Те же, что при создании заказа |
 | `ORDERUPDATE_DUPLIATE_ITEM_PRODUCT_ID` | В корзине повторяется `productId` | Объединить дубли. Код в API пишется именно так, с опечаткой |
 | `ORDERUPDATE_INVALID_ITEM_QUANTITY` | Некорректное `quantityCount` | В `targetCart` — остаток, в `refundCart` — возвращаемое количество; не больше исходного |
 | `ORDERUPDATE_INVALID_ITEM_PRICE` | Некорректная `price` | `price` — цена за единицу после операции, строкой с двумя знаками после запятой (например `"4500.00"`) |

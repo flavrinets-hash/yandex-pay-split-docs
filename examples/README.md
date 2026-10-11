@@ -12,6 +12,12 @@
 | [`logs/02-refund.json`](logs/02-refund.json) | `POST /v2/orders/{order_id}/refund` | Возврат принят, операция `REFUND` в статусе `PENDING` |
 | [`logs/03-get-order.json`](logs/03-get-order.json) | `GET /v1/orders/{order_id}` | Заказ `REFUNDED`, операции `AUTHORIZE` и `REFUND` в статусе `SUCCESS` |
 
+Отдельный прогон «создание заказа → оплата Сплитом» без возврата, выполнен 11 октября 2026 года:
+
+| Файл | Запрос | Результат |
+| --- | --- | --- |
+| [`logs/04-get-order-captured.json`](logs/04-get-order-captured.json) | `GET /v1/orders/{order_id}` | Заказ `CAPTURED`, операция `AUTHORIZE` в статусе `SUCCESS` |
+
 ## curl-скрипты
 
 ```bash

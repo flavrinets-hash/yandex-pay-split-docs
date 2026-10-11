@@ -1,0 +1,95 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders/ad3ff67e-9a45-4264-940d-1cdb5e9b942d",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "<REQUEST_ID>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 200,
+      "status": "success",
+      "data": {
+        "delivery": null,
+        "operations": [
+          {
+            "amount": "30000.00",
+            "approvalCode": null,
+            "created": "2026-10-11T18:20:23.959737+03:00",
+            "externalOperationId": null,
+            "operationId": "03c807d9-92f5-40b5-abbd-663f3595b8ef",
+            "operationType": "AUTHORIZE",
+            "orderId": "ad3ff67e-9a45-4264-940d-1cdb5e9b942d",
+            "params": {},
+            "reason": null,
+            "status": "SUCCESS",
+            "updated": "2026-10-11T18:20:26.568398+03:00"
+          }
+        ],
+        "order": {
+          "cart": {
+            "cartId": "ccabe489fda522d0a6ae72eec66bb85a41054c3df75cb78cd10d058dc5b9d69a",
+            "coupons": null,
+            "discounts": null,
+            "externalId": null,
+            "items": [
+              {
+                "description": null,
+                "discountedUnitPrice": "30000.00",
+                "features": null,
+                "finalPrice": "30000.00",
+                "measurements": null,
+                "pointsAmount": null,
+                "productId": "Item_1",
+                "quantity": {
+                  "available": null,
+                  "count": "1",
+                  "label": null
+                },
+                "receipt": null,
+                "skuId": null,
+                "subtotal": null,
+                "title": "Тестовый товар",
+                "total": "30000.00",
+                "type": "UNSPECIFIED",
+                "unitPrice": "30000.00"
+              }
+            ],
+            "measurements": null,
+            "total": {
+              "amount": "30000.00",
+              "externalAmount": null,
+              "label": null,
+              "pointsAmount": null
+            }
+          },
+          "contractType": 1,
+          "coolingPeriodExpiresAt": null,
+          "created": "2026-10-11T18:20:08.724234+03:00",
+          "currencyCode": "RUB",
+          "fiscalContact": null,
+          "isPrepayment": false,
+          "merchantId": "<MERCHANT_ID>",
+          "metadata": null,
+          "orderAmount": "30000.00",
+          "orderId": "ad3ff67e-9a45-4264-940d-1cdb5e9b942d",
+          "paymentMethod": {
+            "cardLast4": "7992",
+            "cardNetwork": "MIR",
+            "methodType": "SPLIT"
+          },
+          "paymentStatus": "CAPTURED",
+          "paymentUrl": "https://sandbox.pay.ya.ru/o/avvpk0",
+          "reason": null,
+          "reasonCode": null,
+          "shippingMethod": null,
+          "splitCode": null,
+          "updated": "2026-10-11T18:20:26.568398+03:00"
+        }
+      }
+    }
+  }
+}

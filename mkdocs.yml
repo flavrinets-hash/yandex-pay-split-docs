@@ -31,8 +31,8 @@ nav:
   - Руководства:
       - Сквозное тестирование в Sandbox: guides/sandbox-e2e.md
       - Частичный возврат: guides/partial-refund.md
-  - Поддержка:
-      - "Разбор обращения: ошибка в запросе": support/request-review.md
+  - Решение проблем:
+      - На платёжной форме доступен только Сплит: troubleshooting/split-only-payment-form.md
   - Схемы:
       - Сценарий оплаты через Сплит: diagrams/payment-flow.md
   - Справочник:
