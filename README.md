@@ -1,7 +1,7 @@
 # Яндекс Пэй и Сплит: документация для партнёра-разработчика
 
 [![Deploy Docs](https://img.shields.io/github/actions/workflow/status/flavrinets-hash/yandex-pay-split-docs/docs.yml?branch=main&style=flat-square&logo=github&label=Deploy%20Docs)](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/docs.yml)
-[![Markdown Lint](https://img.shields.io/badge/Markdown-lint-informational?style=flat-square&logo=markdown)](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/docs.yml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/flavrinets-hash/yandex-pay-split-docs/lint.yml?branch=main&style=flat-square&logo=markdown&label=Lint)](https://github.com/flavrinets-hash/yandex-pay-split-docs/actions/workflows/lint.yml)
 [![MkDocs Material](https://img.shields.io/badge/MkDocs-Material-526CFE?style=flat-square&logo=materialformkdocs&logoColor=white)](https://flavrinets-hash.github.io/yandex-pay-split-docs/)
 
 **Сайт документации:** <https://flavrinets-hash.github.io/yandex-pay-split-docs/>
