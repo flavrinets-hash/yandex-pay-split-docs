@@ -1,0 +1,90 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders/97a11601-0af0-4227-a26a-b25a6d5535c7",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "764f1ea7-a8c0-46bb-ba61-215cd1f4a75f"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 200,
+      "status": "success",
+      "data": {
+        "delivery": null,
+        "operations": [
+          {
+            "amount": "30000.00",
+            "approvalCode": null,
+            "created": "2026-10-10T13:32:45.926368+03:00",
+            "externalOperationId": "78797bf9-288f-4062-934d-b4a5d0575f6e",
+            "operationId": "0c60ff8d-81d3-4f68-bed9-b6503fe0193a",
+            "operationType": "REFUND",
+            "orderId": "97a11601-0af0-4227-a26a-b25a6d5535c7",
+            "params": {
+              "branch_id": null,
+              "manager_id": null,
+              "motive": null
+            },
+            "reason": null,
+            "status": "SUCCESS",
+            "updated": "2026-10-10T13:32:49.459844+03:00"
+          },
+          {
+            "amount": "30000.00",
+            "approvalCode": null,
+            "created": "2026-10-10T13:30:59.803241+03:00",
+            "externalOperationId": null,
+            "operationId": "4add7e3e-a965-4fb1-8e60-052aa92e1681",
+            "operationType": "AUTHORIZE",
+            "orderId": "97a11601-0af0-4227-a26a-b25a6d5535c7",
+            "params": {},
+            "reason": null,
+            "status": "SUCCESS",
+            "updated": "2026-10-10T13:31:00.996131+03:00"
+          }
+        ],
+        "order": {
+          "cart": {
+            "cartId": "3c702e562a8ea82f6b4d24063bc81d04f148b586b6e4d67345aca9cfdf6a9ced",
+            "coupons": null,
+            "discounts": null,
+            "externalId": null,
+            "items": [],
+            "measurements": null,
+            "total": {
+              "amount": "0",
+              "externalAmount": null,
+              "label": null,
+              "pointsAmount": null
+            }
+          },
+          "contractType": 1,
+          "coolingPeriodExpiresAt": null,
+          "created": "2026-10-10T13:30:22.637468+03:00",
+          "currencyCode": "RUB",
+          "fiscalContact": null,
+          "isPrepayment": false,
+          "merchantId": "<MERCHANT_ID>",
+          "metadata": null,
+          "orderAmount": "0",
+          "orderId": "97a11601-0af0-4227-a26a-b25a6d5535c7",
+          "paymentMethod": {
+            "cardLast4": "7992",
+            "cardNetwork": "MIR",
+            "methodType": "SPLIT"
+          },
+          "paymentStatus": "REFUNDED",
+          "paymentUrl": "https://sandbox.pay.ya.ru/o/bdRWcP",
+          "reason": null,
+          "reasonCode": null,
+          "shippingMethod": null,
+          "splitCode": null,
+          "updated": "2026-10-10T13:32:49.459844+03:00"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v1/orders",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "98d8e1ec-af8b-464d-8897-0b613180a830",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "orderId": "97a11601-0af0-4227-a26a-b25a6d5535c7",
+      "currencyCode": "RUB",
+      "availablePaymentMethods": [
+        "CARD",
+        "SPLIT"
+      ],
+      "preferredPaymentMethod": "SPLIT",
+      "cart": {
+        "items": [
+          {
+            "productId": "Item_1",
+            "title": "Тестовый товар",
+            "unitPrice": "30000.00",
+            "discountedUnitPrice": "30000.00",
+            "total": "30000.00",
+            "quantity": {
+              "count": "1"
+            }
+          }
+        ],
+        "total": {
+          "amount": "30000.00"
+        }
+      },
+      "redirectUrls": {
+        "onSuccess": "https://example.com/success",
+        "onError": "https://example.com/error"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 200,
+      "status": "success",
+      "data": {
+        "paymentUrl": "https://sandbox.pay.ya.ru/o/bdRWcP"
+      }
+    }
+  }
+}

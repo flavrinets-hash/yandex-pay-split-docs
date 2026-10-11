@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sandbox.pay.yandex.ru/api/merchant/v2/orders/97a11601-0af0-4227-a26a-b25a6d5535c7/refund",
+    "headers": {
+      "Authorization": "Api-Key <MERCHANT_ID>",
+      "X-Request-Id": "3439abb9-fe3e-407c-8996-4cb627e27daf",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "externalOperationId": "78797bf9-288f-4062-934d-b4a5d0575f6e",
+      "refundAmount": "30000.00"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 200,
+      "status": "success",
+      "data": {
+        "operation": {
+          "operationId": "0c60ff8d-81d3-4f68-bed9-b6503fe0193a",
+          "operationType": "REFUND",
+          "orderId": "97a11601-0af0-4227-a26a-b25a6d5535c7",
+          "amount": "30000.00",
+          "pointsAmount": null,
+          "status": "PENDING",
+          "reason": null,
+          "params": {
+            "motive": null,
+            "branch_id": null,
+            "manager_id": null
+          },
+          "externalOperationId": "78797bf9-288f-4062-934d-b4a5d0575f6e",
+          "created": "2026-10-10T13:32:45.926368+03:00",
+          "updated": "2026-10-10T13:32:45.926368+03:00",
+          "paymentMethod": {
+            "methodType": "SPLIT"
+          }
+        }
+      }
+    }
+  }
+}

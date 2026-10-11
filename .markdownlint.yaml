@@ -1,0 +1,7 @@
+default: true
+MD013: false        # длина строки: длинные русские предложения не переносим
+MD033:
+  allowed_elements: [br, details, summary]
+MD046: false   # вкладки pymdownx.tabbed дают отступ, линтер считает его indented-блоком
+MD007:
+  indent: 4         # MkDocs (Python-Markdown) требует 4 пробела для вложенных списков

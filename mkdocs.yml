@@ -1,0 +1,58 @@
+site_name: Яндекс Пэй и Сплит — документация для партнёра
+site_description: Кейс технической документации по интеграции платёжного API (неофициальная документация)
+site_author: Фёдор Лавринец
+repo_url: https://github.com/flavrinets-hash/yandex-pay-split-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: ru
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Тёмная тема
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+
+nav:
+  - Обзор: index.md
+  - Интеграция:
+      - Подключение оплаты картой: integration/card-only.md
+  - Руководства:
+      - Сквозное тестирование в Sandbox: guides/sandbox-e2e.md
+      - Частичный возврат: guides/partial-refund.md
+  - Поддержка:
+      - "Разбор обращения: ошибка в запросе": support/request-review.md
+  - Схемы:
+      - Сценарий оплаты через Сплит: diagrams/payment-flow.md
+  - Справочник:
+      - Статусы заказа и операций: reference/statuses.md
+      - Коды ошибок: reference/error-codes.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

@@ -1,0 +1,12 @@
+site/
+.venv/
+__pycache__/
+# Postman environment с реальными ключами не коммитим
+*.postman_environment.json
+!*.example.postman_environment.json
+examples/curl/env.sh
+# Сырые материалы прогона (в них есть реальный merchantId) — не коммитим
+/curl*.json
+/response*.json
+/Screenshot*
+/IMG_*
